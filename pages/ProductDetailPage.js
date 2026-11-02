@@ -8,5 +8,9 @@ class ProductDetailPage {
         this.addToCartBtn= page.locator("#add-to-cart");
         this.removeFromCartBtn = page.locator("#remove");
     }
+
+    async backToProduct(){
+        await this.backToProductsBtn.click();
+    }
 }
 module.exports = ProductDetailPage;
