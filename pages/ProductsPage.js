@@ -5,7 +5,8 @@ class ProductsPage {
         this.title = page.locator(".title");
         this.menuBtn = page.locator('#react-burger-menu-btn');
         this.closeMenuBtn = page.locator('#react-burger-cross-btn');
-        this.cartBtn = page.locator("a[aria-label='Cart, empty']");
+        //this.cartBtn = page.locator("a[aria-label='Cart, empty']");
+        this.cartBtn = page.locator(".shopping_cart_link");
         this.filterBtn = page.locator("select[aria-label='Sort products']");
         this.allItemsBtn = page.locator('#inventory_sidebar_link');
         this.catalogBtn = page.locator('#dynamic_catalog_sidebar_link');

@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 const LoginPage = require("../pages/LoginPage");
 const ProductsPage = require('../pages/ProductsPage');
 const ProductDetailPage = require('../pages/ProductDetailPage');
+const CartPage = require('../pages/CartPage');
 
 test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page);
@@ -92,5 +93,18 @@ test.describe('Adding products to cart', () =>{
        await await productsPage.removeItemFromCart();
        await expect(productsPage.cartBadge).not.toBeVisible();
        await expect(productsPage.addToCart).toBeVisible();
+    });
+
+    test('Cart icon is visible', async ({ page }) => {
+       const productsPage = new ProductsPage(page);
+       await expect(productsPage.cartBtn).toBeVisible();
+    });
+
+    test('When cart icon is clicked cart page opens', async ({ page }) => {
+        const productsPage = new ProductsPage(page);
+        await productsPage.cartBtn.click();
+        const cartPage = new CartPage(page);
+        await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
+        await expect(cartPage.title).toHaveText("Your Cart");
     });
 });
