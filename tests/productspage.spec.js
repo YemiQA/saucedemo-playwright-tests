@@ -37,6 +37,16 @@ test('Open details page', async ({ page }) => {
     
 });
 
+test('User can go back to products list from product details page', async ({ page }) => {
+    const productsPage = new ProductsPage(page);
+    const productDetailPage = new ProductDetailPage(page);
+    productsPage.product1.click();
+    await expect (productDetailPage.backToProductsBtn).toBeVisible();
+    await productDetailPage.backToProductsBtn.click();
+    await expect(productsPage.title).toHaveText("Products");
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+});
+
 test.describe('Sorting Products', () => {
 
     test('Sorting Products A-Z', async ({ page }) => {
