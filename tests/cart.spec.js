@@ -29,9 +29,9 @@ test('Products are visible in cart', async({ page }) => {
 
     const cartPage = new CartPage(page);
 
-    await expect(cartPage.inventoryName).toBeVisible();
-    await expect(cartPage.inventoryDescription).toBeVisible();
-    await expect(cartPage.inventoryPrice).toBeVisible();
+    await expect(cartPage.inventoryName.nth(0)).toBeVisible();
+    await expect(cartPage.inventoryDescription.nth(0)).toBeVisible();
+    await expect(cartPage.inventoryPrice.nth(0)).toBeVisible();
 });
 
 test('Multiple products are visible in cart', async({ page }) => {
@@ -121,7 +121,7 @@ test('products stay in cart after leaving checkout', async ({ page }) => {
     const cartPage = new CartPage(page);
     await cartPage.checkoutBtn.click();
     const checkoutPage = new CheckoutPage(page);
-    checkoutPage.cancelBtn.click();
+    await checkoutPage.cancelBtn.click();
     await expect(cartPage.cartItems).toBeVisible();
 
 });
